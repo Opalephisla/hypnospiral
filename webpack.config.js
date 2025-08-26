@@ -84,7 +84,7 @@ const clientConfig = {
             new HtmlWebpackPlugin({
                 templateParameters: async () => {
                     if (isDevelopment) {
-                        return { injectCode: '' };
+                        return {injectCode: ''};
                     }
                     const { App } = (require('./tmp/bundle.server.js'));
                     React.useLayoutEffect = React.useEffect
