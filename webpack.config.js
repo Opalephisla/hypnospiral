@@ -83,10 +83,12 @@ const clientConfig = {
             }),
             new HtmlWebpackPlugin({
                 templateParameters: async () => {
+                    if (isDevelopment) {
+                        return { injectCode: '' };
+                    }
                     const { App } = (require('./tmp/bundle.server.js'));
-                    // evil
                     React.useLayoutEffect = React.useEffect
-                    return {injectCode: ReactDOM.renderToStaticMarkup(React.createElement(App.default, null, null))}
+                    return { injectCode: ReactDOM.renderToStaticMarkup(React.createElement(App.default, null, null)) }
                 }
             }),
             isDevelopment && new ReactRefreshWebpackPlugin()
